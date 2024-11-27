@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The North Face - Premium Collection</title>
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/icon/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script type="text/javascript" src="assets/js/bootstrap.bundle.js"></script>
+    <style>
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0); }
+            50% { transform: translateY(-20px) rotate(3deg); }
+        }
+
+        @keyframes shine {
+            0% { background-position: -100px; }
+            100% { background-position: 200px; }
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #ffffff;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 4px;
+        }
+
+        body {
+            overflow-x: hidden;
+            background-color: #6a6a6a;
+        }
+
+        .hero-section {
+            background: linear-gradient(90deg, white 20%, #a7251b 60%);
+            padding: 200px 0;
+        }
+
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50" fill="%23ffffff10"/></svg>');
+            background-size: 20px 20px;
+            opacity: 0.1;
+            animation: float 20s linear infinite;
+        }
+
+        .hero-image {
+            animation: float 6s ease-in-out infinite;
+            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.3));
+            transition: var(--transition);
+        }
+
+        .product-card {
+            background: white;
+            border: none;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        .product-card img {
+            transition: var(--transition);
+        }
+
+        .product-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .product-card .card-body {
+            padding: 2rem;
+        }
+
+        .btn-primary {
+            border: none;
+            padding: 12px 30px;
+            border-radius: 50px;
+            position: relative;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: shine 3s infinite linear;
+        }
+
+        .stats-item {
+            background: rgb(255, 255, 255);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(255, 254, 254, 0.05);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition);
+        }
+
+        .stats-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .form-control {
+            border: 2px solid #eee;
+            padding: 15px;
+            border-radius: 10px;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(255,77,77,0.1);
+        }
+
+        .navbar {
+            background: rgba(71, 71, 71, 0.95) !important;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-link {
+            font-weight: 500;
+            position: relative;
+            padding: 8px 20px;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: var(--transition);
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 80%;
+        }
+
+        .section-card {
+            background: rgb(246, 138, 138);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .section-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .icon-feature {
+            font-size: 2.5rem;
+            color: #2ecc71;
+            margin-bottom: 1rem;
+        }
+
+        .animate-text {
+            animation: fadeInUp 1s ease;
+        }
+        .carousel-item img {
+               display: block;
+             margin-left: auto;
+          margin-right: auto;
+        }
+        .custom-bg {
+        background-color: #333; 
+        color: white;            
+         }
+
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#products">Products</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#detailproduct">Detail Product</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="white" class="bi bi-cart" viewBox="0 0 16 16">
+                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.102 4l1.313 7h8.17l1.313-7zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4m7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4m-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2m7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2"/>
+                  </svg>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section id="home" class="hero-section d-flex align-items-center">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 text-black">
+                    <h1 class="display-3 fw-bold mb-4 animate__animated animate__fadeInUp">The North Face</h1>
+                    <p class="lead mb-4 animate__animated animate__fadeInUp animate__delay-1s">
+                        WELCOME TO THE PENYELAMAT BUMI STORE</p>
+                </div>
+                <div class="col-lg-6">
+                    <img src="assets/image/tnf.jpg" alt="Hero Image" class="img-fluid hero-image animate__animated animate__fadeInRight" style="width: 70%; height:70;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="products" class="py-5">
+        <div class="container mt-5">
+            <div id="productCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <img src="assets/image/tnf1.jpg" class="d-block w-50" alt="Produk 1">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>The North Face Men TKA 100 Zip-In Jacket</h5>
+                            <p>Premium Waterproof jacket perfect for extreme weather conditions</p>
+                            <a href="#product1" class="btn btn-primary">Detail Produk</a>
+                            <div class="product-icons">
+                                <a href="#"><i class="fas fa-shopping-cart" style="color: white;"></i></a>
+                                <a href="#"><i class="fas fa-thumbs-up" style="color: white;"></i></a>
+                                <a href="#"><i class="fas fa-heart" style="color: white;"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <img src="assets/image/tnf2.jpg" class="d-block w-50" alt="Produk 2">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5> The North Face Men New Hooded Manchuria RV Jacket</h5>
+                            <p>Premium Waterproof jacket perfect for extreme weather conditions</p>
+                            <a href="#product2" class="btn btn-primary">Detail Produk</a>
+                            <div class="product-icons">
+                                <a href="#"><i class="fas fa-shopping-cart" style="color: white;"></i></a>
+                                <a href="#"><i class="fas fa-thumbs-up" style="color: white;"></i></a>
+                                <a href="#"><i class="fas fa-heart" style="color: white;"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-item">
+                        <img src="assets/image/tnf4.jpg" class="d-block w-50" alt="Produk 3">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>The North Face Men MFO Khumbu Zip-In Jacket</h5>
+                            <p>Premium Waterproof jacket perfect for extreme weather conditions</p>
+                            <a href="#product3" class="btn btn-primary">Detail Produk</a>
+                            <div class="product-icons">
+                                <a href="#"><i class="fas fa-shopping-cart" style="color: white;"></i></a>
+                                <a href="#"><i class="fas fa-thumbs-up" style="color: white;"></i></a>
+                                <a href="#"><i class="fas fa-heart" style="color: white;"></i></a>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <div class="carousel-item">
+                        <img src="assets/image/tnf3.jpg" class="d-block w-50" alt="Produk 4">
+                        <div class="carousel-caption d-none d-md-block">
+                            <h5>The North Face Men MFO Khumbu Zip-In Jacket</h5>
+                            <p>Premium Waterproof jacket perfect for extreme weather conditions</p>
+                            <a href="#product4" class="btn btn-primary">Detail Produk</a>
+                            <div class="product-icons">
+                                <a href="#"><i class="fas fa-shopping-cart" style="color: white;"></i></a>
+                                <a href="#"><i class="fas fa-thumbs-up" style="color: white;"></i></a>
+                                <a href="#"><i class="fas fa-heart" style="color: white;"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#productCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#productCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+    </section>
+    
+<section id="detailproduct" class="py-5">
+    <div class="container">
+        <h1 class="text-center mb-5">Product Details</h1>
+
+        <div id="product1" class="row mb-4">
+            <div class="col-md-6">
+                <img src="assets/image/tnf1.jpg" alt="Mountain Explorer Jacket" class="img-fluid">
+            </div>
+            <div class="col-md-6">
+                <h3>The North Face Men TKA 100 Zip-In Jacket</h3>
+                <p>Premium Waterproof jacket perfect for extreme weather conditions. Made with high-quality materials and designed for durability and comfort.</p>
+                <p><strong>Price:</strong> $300.000</p>
+                <button class="btn btn-primary" onclick="addToCart(300000)">Add to Cart</button>
+            </div>
+        </div>
+        <div id="product2" class="row mb-4">
+            <div class="col-md-6">
+                <img src="assets/image/tnf2.jpg" alt="Mountain Explorer Jacket" class="img-fluid">
+            </div>
+            <div class="col-md-6">
+                <h3>The North Face Men New Hooded Manchuria RV Jacket</h3>
+                <p>Premium Waterproof jacket perfect for extreme weather conditions. Made with high-quality materials and designed for durability and comfort.</p>
+                <p><strong>Price:</strong> $250.000</p>
+                <button class="btn btn-primary" onclick="addToCart(250000)">Add to Cart</button>
+            </div>
+        </div>
+
+        <div id="product3" class="row mb-4">
+            <div class="col-md-6">
+                <img src="assets/image/tnf4.jpg" alt="Mountain Explorer Jacket" class="img-fluid">
+            </div>
+            <div class="col-md-6">
+                <h3>The North Face Men MFO Khumbu Zip-In Jacket</h3>
+                <p>Premium Waterproof jacket perfect for extreme weather conditions. Made with high-quality materials and designed for durability and comfort.</p>
+                <p><strong>Price:</strong> $200.000</p>
+                <button class="btn btn-primary" onclick="addToCart(200000)">Add to Cart</button>
+            </div>
+        </div>
+
+        <div id="product4" class="row mb-4">
+            <div class="col-md-6">
+                <img src="assets/image/tnf3.jpg" alt="Mountain Explorer Jacket" class="img-fluid">
+            </div>
+            <div class="col-md-6">
+                <h3>The North Face Men MFO Khumbu Zip-In Jacket</h3>
+                <p>Premium Waterproof jacket perfect for extreme weather conditions. Made with high-quality materials and designed for durability and comfort.</p>
+                <p><strong>Price:</strong> $280.000</p>
+                <button class="btn btn-primary" onclick="addToCart(280000)">Add to Cart</button>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+    <section id="about" class="py-5">
+        <div class="container about-section">
+            <div class="text-center mb-5 animate-text">
+                <h1 class="display-4 fw-bold mb-4">About North Face Jackets</h1>
+                <p class="lead">North Face adalah merek yang didedikasikan untuk menyediakan perlengkapan 
+                dan pakaian luar ruangan berkualitas tinggi.</p>
+            </div>
+    
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="section-card text-center">
+                        <i class="fas fa-bullseye icon-feature"></i>
+                        <h3 class="h4 mb-3">Our Mission</h3>
+                        <p>Kami bertujuan untuk menginspirasi dan memungkinkan penjelajahan luar ruangan melalui produk inovatif kami. 
+                        Jaket kami dirancang untuk menahan cuaca sekaligus memberikan kenyamanan dan gaya.</p>
+                    </div>
+                </div>
+    
+                <div class="col-md-4">
+                    <div class="section-card text-center">
+                        <i class="fas fa-leaf icon-feature"></i>
+                        <h3 class="h4 mb-3">Quality and Sustainability</h3>
+                        <p>Kami mengutamakan kualitas dalam setiap produk yang kami buat. Komitmen kami terhadap keberlanjutan 
+                        memastikan bahwa bahan dan proses yang kami gunakan ramah lingkungan.</p>
+                    </div>
+                </div>
+    
+                <div class="col-md-4">
+                    <div class="section-card text-center">
+                        <i class="fas fa-users icon-feature"></i>
+                        <h3 class="h4 mb-3">Join Us</h3>
+                        <p>Baik saat Anda mendaki gunung atau berjalan-jalan di kota, jaket kami dibuat untuk menjaga Anda tetap hangat 
+                        dan terlindungi. Bergabunglah dengan kami dalam menjelajahi alam terbuka yang luar biasa!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-5">
+        <div class="container mt-5">
+            <h1 class="text-center">PenyelamatBumiSTORE</h1>
+    
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <ul class="list-group">
+                        <li class="list-group-item bg-dark text-white text-center font-weight-bold">
+                            Contact Person:
+                        <li class="list-group-item bg-dark text-white">Name: Astuti</li>
+                        <li class="list-group-item bg-dark text-white">Position: Administrasi</li>
+                        <li class="list-group-item bg-dark text-white">Telp: 62849-0936-0496</li>
+                        <li class="list-group-item bg-dark text-white">eMail: PenyelamatBumiSTORE@gmail.com</li>
+                    </ul>
+                    
+                </div>                
+    
+                <div class="col-md-6">
+                    <ul class="list-group">
+                        <li class="list-group-item bg-dark text-white text-center font-weight-bold">Website:
+                        <li class="list-group-item bg-dark text-white">
+                        <a href="landscape.html" target="_blank" class="text-white">PenyelamatBumiSTORE.id</a>
+                        </a>
+                        </li>
+                    </ul>
+                </div>
+                </div>
+                
+                <div class="row mt-4">
+                    <div class="col-md-6">
+                        <ul class="list-group">
+                            <li class="list-group-item bg-dark text-white text-center font-weight-bold">Social Media:
+                            <li class="list-group-item bg-dark text-white">Facebook: @PenyelamatBumiSTORE</li>
+                            <li class="list-group-item bg-dark text-white">gmail: @PenyelamatBumiSTORE.@gmail.com</li>
+                            <li class="list-group-item bg-dark text-white">Twitter: @PenyelamatBumiSTORE</li>
+                        </ul>
+                    </div>
+                
+                    <div class="col-md-6">
+                        <ul class="list-group">
+                            <li class="list-group-item bg-dark text-white text-center font-weight-bold">Social Media:Office Address:
+                            <li class="list-group-item bg-dark text-white">PenyelamatBumiSTORE</li>
+                            <li class="list-group-item bg-dark text-white">20 Jenderal Api Neraka, Medan City, South Sumatera Utara, INDONESIA</li>
+                            <li class="list-group-item bg-dark text-white">Coordinates: 4.91, 95.66 · -1.25 · 1°50'N 98°44'E</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="mt-4">
+                    <p>Jika Anda memiliki pertanyaan atau masalah, jangan ragu untuk menghubungi kami. Kami selalu senang mendengar pendapat Anda.</p>
+                </div>
+    
+        
+    
+</body>
+</html>
